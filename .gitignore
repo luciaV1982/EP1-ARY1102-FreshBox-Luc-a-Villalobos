@@ -1,0 +1,28 @@
+﻿.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+crash.log
+crash.*.log
+
+# Variables y credenciales
+*.tfvars
+*.tfvars.json
+.env
+.env.*
+
+# Editor y sistema
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Respaldos locales
+*.backup
+
+# Archivos auxiliares no incluidos en la entrega
+app/scripts/guia-docente-ep1.md
+app/scripts/user-data-ec2.sh
+
+*.tfvars
+
+README-backup.md
