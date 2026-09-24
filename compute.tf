@@ -293,6 +293,15 @@ resource "aws_autoscaling_group" "app" {
     version = "$Latest"
   }
 
+  instance_refresh {
+    strategy = "Rolling"
+
+    preferences {
+      min_healthy_percentage = 50
+    }
+
+  }
+
   tag {
     key                 = "Name"
     value               = "FreshBox-APP-ASG"

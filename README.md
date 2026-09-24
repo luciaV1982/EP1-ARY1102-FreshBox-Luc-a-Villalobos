@@ -258,6 +258,8 @@ Configuración:
 - Distribución entre `us-east-1a` y `us-east-1b`.
 - Integración con el Target Group del Application Load Balancer.
 
+El Auto Scaling Group utiliza la última versión del Launch Template (`$Latest`) y tiene configurado `instance_refresh` con estrategia `Rolling`. De esta forma, cuando Terraform actualiza el Launch Template, las instancias APP pueden renovarse progresivamente para utilizar la nueva configuración sin reemplazarlas todas al mismo tiempo.
+
 Las nuevas instancias ejecutan automáticamente el `user_data` configurado mediante Terraform.
 
 Durante el arranque se prepara y ejecuta:
