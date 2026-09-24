@@ -1,0 +1,40 @@
+name: Terraform CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  terraform:
+    name: Validar Terraform
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Instalar Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Verificar formato
+        run: terraform fmt -check -recursive
+
+      - name: Inicializar Terraform
+        run: terraform init -backend=false
+
+      - name: Validar Terraform
+        run: terraform validate
+
+      - name: Analizar seguridad con Checkov
+        uses: bridgecrewio/checkov-action@master
+        with:
+          directory: .
+          framework: terraform
+          soft_fail: true
