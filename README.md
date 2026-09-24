@@ -515,6 +515,25 @@ FreshBox-Terraform/
 
 ---
 
+## Integración Continua con GitHub Actions
+
+El proyecto incorpora una pipeline de **Integración Continua (CI)** mediante GitHub Actions.
+
+Cada vez que se realiza un `push` o `pull request` hacia la rama `main`, la pipeline ejecuta automáticamente:
+
+1. Verificación del formato de Terraform (`terraform fmt`).
+2. Inicialización de Terraform (`terraform init`).
+3. Validación de la configuración (`terraform validate`).
+4. Análisis de seguridad de la infraestructura como código mediante **Checkov**.
+
+Checkov reporta posibles mejoras de seguridad sin bloquear la ejecución de la pipeline (`soft_fail: true`).
+
+La pipeline no ejecuta `terraform apply`, por lo que no realiza cambios automáticos sobre la infraestructura de AWS Academy.
+
+Archivo de configuración:
+
+`.github/workflows/terraform-ci.yml`
+
 # Eliminación de la infraestructura
 
 Para eliminar los recursos:
